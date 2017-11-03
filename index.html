@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>talk in js - love</title>
+</head>
+<body>
+    <script>
+        //类 JS 首字母类化习惯 new
+        //JS 函数就是类
+        var Flower = function(type,num){
+
+        }
+        // 对象 JSON 对象字面量
+        //描述对象，对象越来越清晰，
+        var xiaoming = {
+            name: '小明',
+            sex: '男',
+            status: '单身',
+            //target 形参
+            sendFlower: function(target) {
+                var flower = new Flower('红玫瑰',11);
+                target.receiveFlower(this);//this指向当前对象
+
+            }
+        }
+
+        var xiaohong = {
+            name: '小红',
+            face: '++',
+            sex: '女',
+            status: '单身',
+            receiveFlower: function(sender) {
+                console.log('收到' + sender.name + '送的花');
+            },
+            //fn 函数 JS里参数可以是函数
+            listenGoodMood: function(fn) {
+                setTimeout(function() {
+                    fn();
+                },10000)
+
+            }
+        }
+        xiaoming.sendFlower(xiaohong);
+        //A(行为)->B
+        
+        var xiaomei = {
+            //接口
+            //只要有相同的方法
+            receiveFlower: function(sender) {
+              //  if (sender.name === '小明') {
+               //     console.log('其实我喜欢你很久了，我们在一起吧');
+               // }else {
+                    //定时器
+                    //代理模式
+                    // setTimeout(function(){
+                    //     xiaohong.receiveFlower(sender);
+                    // },2000);
+                    xiaohong.listenGoodMood(function() {
+                        xiaohong.receiveFlower(sender);
+                    })
+            }
+                //}
+           // }
+        }
+        //代理一下，送给小红
+        //代理模式好处：
+        //为一个对象（小红）插入一个代用品或占位符（小梅），
+        //好处，获得了对象的完全控制
+        //xiaoming.sendFlower(xiaomei);
+
+       
+        var zyn = {
+            name: '赵英男',
+            word: '如果你是只飞鸟，那么我活在自己的陆地，我很坚强！'
+        };
+        var lq = {
+            name: '柳青',
+            word: '爱是生活的食物，但是不能陪你一起吃了'
+        }
+        var xh = {
+            name: '小红',
+            word: '你就应该是我的!'
+        }
+        var qiushui = {
+            name: '秋水',
+            college: '仁和医大',
+            hobbies: ['文学'],
+            lovers: [zyn,lq,xh]
+
+        }
+        //遍历
+        //新数组 map 遍历并返回新数组功能
+        var words = qiushui.lovers.map(function(lover) {
+            console.log(lover.name);
+            console.log(lover.word);
+            return lover.word;
+        })
+
+        console.log(words);
+    </script>
+    
+</body>
+</html>
